@@ -15,7 +15,8 @@ kotlin {
 }
 
 dependencies {
-    implementation(projects.core)
+    api(projects.core)
+
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.auth)
 }
