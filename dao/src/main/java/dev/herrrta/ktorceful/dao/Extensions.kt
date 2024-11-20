@@ -18,6 +18,7 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.routing
 import kotlin.reflect.full.isSubclassOf
 
+@Suppress("UNCHECKED_CAST")
 inline fun <reified ERoute : EntityRoute<*>, reified Entity : Any> setEntityRoutes(): Route.() -> Unit = {
     if (ERoute::class.isSubclassOf(GetEntity::class)) {
         get<EntityResource.Pk<ERoute>> {
