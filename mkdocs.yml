@@ -1,0 +1,56 @@
+site_name: Ktorceful
+repo_name: ktorceful
+repo_url: https://github.com/herrrta/ktorceful
+site_description: A simple solution to create reusable class based routing for Ktor
+remote_branch: gh-pages
+
+theme:
+  name: material
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: 'black'
+      accent: 'blue-grey'
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - content.action.view
+    - announce.dismiss
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - 'Home': index.md
+  - 'Setup': setup.md
+  - 'Basic class routing':
+      - 'Overview': core/basic.md
+      - 'API': api/core/index.html
+  - 'Entity Routing':
+      - 'Overview': dao/index.md
+      - 'Resources': dao/resources.md
+      - 'Actions': dao/actions.md
+      - 'API': api/dao/index.html
+  - 'API': api/index.html

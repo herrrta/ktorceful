@@ -1,8 +1,13 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.dokka.gradle.AbstractDokkaTask
 
 plugins {
     alias(libs.plugins.gradle.maven.publish)
     alias(libs.plugins.kotlinJvm) apply false
+
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 val ktorcefulVersion: String by project
@@ -12,9 +17,26 @@ allprojects {
     version = ktorcefulVersion
 }
 
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.dokka:dokka-base:1.9.20")
+    }
+}
+
+tasks.dokkaHtmlMultiModule {
+    outputDirectory.set(rootProject.file("docs/api/"))
+    suppressInheritedMembers.set(true)
+}
+
+applyDokkaHomePageLink(project)
+
 subprojects {
     if (name != "sample") {
+        apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "com.vanniktech.maven.publish")
+
+        applyDokkaHomePageLink(this)
+
         mavenPublishing {
             publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
             signAllPublications()
@@ -42,6 +64,15 @@ subprojects {
                     }
                 }
             }
+        }
+    }
+}
+
+fun applyDokkaHomePageLink(context: Project) {
+    context.tasks.withType<AbstractDokkaTask>().configureEach {
+        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+            homepageLink = "https://github.com/herrrta/ktorceful/"
+            separateInheritedMembers = true
         }
     }
 }

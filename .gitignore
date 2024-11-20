@@ -25,6 +25,7 @@ replay_pid*
 
 local.properties
 /.gradle/
+/.venv/
 /.idea/
 /out/
 
@@ -33,3 +34,6 @@ local.properties
 /sample/build/
 /build/
 /dao/build/
+
+# dokka
+/docs/api/
