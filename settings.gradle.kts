@@ -19,5 +19,6 @@ dependencyResolutionManagement {
 include(
     ":core",
     ":auth",
+    ":dao",
     ":sample"
 )
