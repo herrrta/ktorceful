@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     alias(libs.plugins.kotlinJvm)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 java {
@@ -19,4 +20,9 @@ dependencies {
 
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.auth)
+
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.ktor.server.resources)
+    testImplementation(libs.ktor.server.test.host)
+    testImplementation(libs.ktor.client.auth)
 }
