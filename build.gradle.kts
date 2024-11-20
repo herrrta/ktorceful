@@ -13,8 +13,8 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "com.vanniktech.maven.publish")
     if (name != "sample") {
+        apply(plugin = "com.vanniktech.maven.publish")
         mavenPublishing {
             publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
             signAllPublications()
