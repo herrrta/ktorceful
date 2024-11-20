@@ -3,15 +3,17 @@ package dev.herrrta.ktorceful
 import dev.herrrta.ktorceful.core.interfaces.HTTPMethod
 import dev.herrrta.ktorceful.dao.createEntityRoute
 import dev.herrrta.ktorceful.dao.interfaces.EntityRoute
+import dev.herrrta.ktorceful.dao.resources.EntityResource
 import dev.herrrta.ktorceful.data.entity.User
 import dev.herrrta.ktorceful.data.repository.UserRepository
 import dev.herrrta.ktorceful.routes.UserRoute
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.request.delete
+import io.ktor.client.plugins.resources.delete
+import io.ktor.client.plugins.resources.get
+import io.ktor.client.plugins.resources.post
+import io.ktor.client.plugins.resources.put
 import io.ktor.client.request.get
-import io.ktor.client.request.post
-import io.ktor.client.request.put
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
@@ -52,7 +54,7 @@ class KtorcefulDaoTest {
     @Test
     fun `get all entity instances`() {
         ktorBasicRouteApplication<UserRoute, User> {
-            val response = it.get("/api/user")
+            val response = it.get(UserRoute())
             val users: List<User> = response.body()
 
             users.withIndex().forEach { (index, user) ->
@@ -67,17 +69,17 @@ class KtorcefulDaoTest {
             val pk = 2
 
             // Get entity
-            var response = it.get("/api/user/$pk")
+            var response = it.get(EntityResource.Pk(UserRoute(), pk.toString()))
             val user: User = response.body()
 
             assertEquals(pk, user.id)
 
             // Delete entity
-            response = it.delete("/api/user/$pk")
+            response = it.delete(EntityResource.Pk(UserRoute(), pk.toString()))
             assertEquals(HttpStatusCode.OK, response.status)
 
             // Check if it still exists
-            response = it.get("/api/user/$pk")
+            response = it.get(EntityResource.Pk(UserRoute(), pk.toString()))
             assertEquals(HttpStatusCode.BadRequest, response.status)
         }
     }
@@ -88,21 +90,21 @@ class KtorcefulDaoTest {
             val pk = 3
 
             // Get entity
-            var response = it.get("/api/user/$pk")
+            var response = it.get(EntityResource.Pk(UserRoute(), pk.toString()))
             var user: User = response.body()
 
             assertEquals("Third", user.firstName)
             assertTrue { user.active }
 
             // Update entity
-            response = it.put("/api/user/$pk") {
+            response = it.put(EntityResource.Pk(UserRoute(), pk.toString())) {
                 contentType(ContentType.Application.Json)
                 setBody(User(pk, "changed", active = false))
             }
 
             assertEquals(HttpStatusCode.OK, response.status)
 
-            user = it.get("/api/user/$pk").body()
+            user = it.get(EntityResource.Pk(UserRoute(), pk.toString())).body()
             assertEquals("changed", user.firstName)
             assertTrue { !user.active }
         }
@@ -111,7 +113,7 @@ class KtorcefulDaoTest {
     @Test
     fun `run action against entity instances`() {
         ktorBasicRouteApplication<UserRoute, User> { client ->
-            val response = client.post("/api/user/action/deactivate") {
+            val response = client.post(EntityResource.Action(UserRoute(), "deactivate")) {
                 contentType(ContentType.Application.Json)
                 setBody(listOf(
                     User(1),
@@ -123,7 +125,7 @@ class KtorcefulDaoTest {
             assertEquals(HttpStatusCode.OK, response.status)
 
             (1..3).forEach { pk ->
-                val user: User = client.get("/api/user/$pk").body()
+                val user: User = client.get(EntityResource.Pk(UserRoute(), pk.toString())).body()
                 assertTrue { !user.active }
             }
 
@@ -133,7 +135,7 @@ class KtorcefulDaoTest {
     @Test
     fun `run action using empty list`() {
         ktorBasicRouteApplication<UserRoute, User> {
-            val response = it.post("/api/user/action/deactivate") {
+            val response = it.post(EntityResource.Action(UserRoute(), "deactivate")) {
                 contentType(ContentType.Application.Json)
                 setBody(emptyList<User>())
             }
@@ -146,7 +148,7 @@ class KtorcefulDaoTest {
     fun `run nonexistent action`() {
         ktorBasicRouteApplication<UserRoute, User> {
             assertFailsWith<NotImplementedError> {
-                it.post("/api/user/action/nonexistent") {
+                it.post(EntityResource.Action(UserRoute(), "nonexistent")) {
                     contentType(ContentType.Application.Json)
                     setBody(listOf(User(1)))
                 }
