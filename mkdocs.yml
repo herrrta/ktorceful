@@ -6,6 +6,8 @@ remote_branch: gh-pages
 
 theme:
   name: material
+  icon:
+    annotation: material/arrow-right-circle
   palette:
     - media: '(prefers-color-scheme: light)'
       scheme: default
@@ -30,6 +32,9 @@ plugins:
   - search
 
 markdown_extensions:
+  - tables
+  - attr_list
+  - md_in_html
   - admonition
   - pymdownx.betterem:
       smart_enable: all
@@ -45,12 +50,15 @@ markdown_extensions:
 nav:
   - 'Home': index.md
   - 'Setup': setup.md
-  - 'Basic class routing':
-      - 'Overview': core/basic.md
-      - 'API': api/core/index.html
+  - 'Basic Routing':
+      - 'Overview': core/index.md
+      - 'Kotlin API': api/core/index.html
   - 'Entity Routing':
       - 'Overview': dao/index.md
-      - 'Resources': dao/resources.md
       - 'Actions': dao/actions.md
-      - 'API': api/dao/index.html
-  - 'API': api/index.html
+      - 'Kotlin API': api/dao/index.html
+  - 'Auth':
+      - 'Overview': auth/index.md
+      - 'Kotlin API': api/auth/index.html
+  - 'Samples': samples.md
+  - 'Kotlin API': api/index.html

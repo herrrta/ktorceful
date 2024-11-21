@@ -1,7 +1,7 @@
 # Ktorceful
-A simple solution to create reusable class based routing for Ktor
+Create class based routing for Ktor
 
-Avoid needing to type out repetitive routing dsl!
+Avoid writing out functions and declaring routing verbs in dsl!
 
 ```kotlin
 // Create your class based view to handle all your required HTTP methods
