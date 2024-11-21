@@ -41,3 +41,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           FOLDER: docs
+          BRANCH: gh-pages
