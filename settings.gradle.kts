@@ -20,5 +20,6 @@ include(
     ":core",
     ":auth",
     ":dao",
-    "samples:basic-sample"
+    "samples:basic-sample",
+    ":samples:crud-entity-sample"
 )

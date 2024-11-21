@@ -30,18 +30,19 @@ tasks.dokkaHtmlMultiModule {
 
 applyDokkaHomePageLink(project)
 
-subprojects {
-    if (name != "sample") {
-        apply(plugin = "org.jetbrains.dokka")
-        apply(plugin = "com.vanniktech.maven.publish")
+subprojects
+    .filterNot { it.name.contains("sample") }
+    .forEach { subproject ->
+        subproject.apply(plugin = "org.jetbrains.dokka")
+        subproject.apply(plugin = "com.vanniktech.maven.publish")
 
-        applyDokkaHomePageLink(this)
+        applyDokkaHomePageLink(subproject)
 
-        mavenPublishing {
+        subproject.mavenPublishing {
             publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
             signAllPublications()
 
-            coordinates("dev.herrrta.ktorceful", name, ktorcefulVersion)
+            coordinates("dev.herrrta.ktorceful", subproject.name, ktorcefulVersion)
 
             pom {
                 name.set("Ktorceful")
@@ -66,7 +67,6 @@ subprojects {
             }
         }
     }
-}
 
 fun applyDokkaHomePageLink(context: Project) {
     context.tasks.withType<AbstractDokkaTask>().configureEach {
