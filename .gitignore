@@ -31,9 +31,11 @@ local.properties
 
 /auth/build/
 /core/build/
-/sample/build/
+/samples/*/build/
 /build/
 /dao/build/
+
+
 
 # dokka
 /docs/api/

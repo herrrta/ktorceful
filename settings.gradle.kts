@@ -20,5 +20,5 @@ include(
     ":core",
     ":auth",
     ":dao",
-    ":sample"
+    "samples:basic-sample"
 )
