@@ -741,8 +741,8 @@ separate endpoints.</p>
 <p>Actions all use the POST http method since it assumes you are passing in a list of entities to
 perform an action on.</p>
 <h2 id="defining-an-action">Defining an action</h2>
-<p>An action must be annotated using the <code>Action</code> annotation class.
-Each action should have the <code>(RoutingCall, List&lt;Entity&gt;)</code> as parameters.</p>
+<p>An action must be annotated using the <code>Action</code> annotation class.</p>
+<p>Each action should have <code>(RoutingCall, List&lt;Entity&gt;)</code> as parameters.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Resource</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">)</span>
 <span class="kd">class</span><span class="w"> </span><span class="nc">UserRoute</span><span class="p">:</span><span class="w"> </span><span class="n">APIRoute</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">//...</span>
@@ -763,11 +763,15 @@ Each action should have the <code>(RoutingCall, List&lt;Entity&gt;)</code> as pa
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="calling-an-action">Calling an action</h2>
-<p>To call an action you can use the following url pattern:
-- <code>POST: {entity}/{action}/</code></p>
-<p>In the user example above we can use the following urls:
-- <code>POST: user/disable/</code>
-- <code>POST: user/activate/</code></p>
+<p>To call an action you can use the following url pattern:</p>
+<ul>
+<li><code>POST: {entity}/{action}/</code></li>
+</ul>
+<p>In the user example above we can use the following urls:</p>
+<ul>
+<li><code>POST: user/disable/</code></li>
+<li><code>POST: user/activate/</code></li>
+</ul>
 
 
 
