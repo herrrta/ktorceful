@@ -42,6 +42,20 @@ class KtorcefulDaoTest {
     }
 
     @Test
+    fun `post new entity instance`() {
+        ktorBasicRouteApplication<UserRoute, User> {
+            val response = it.post(UserRoute()) {
+                contentType(ContentType.Application.Json)
+                setBody(User(10, "NEW"))
+            }
+            assertEquals(HttpStatusCode.OK, response.status)
+
+            val user: User = it.get(EntityResource.Pk(UserRoute(), "10")).body()
+            assertEquals(10, user.id)
+        }
+    }
+
+    @Test
     fun `get single entity instance`() {
         ktorBasicRouteApplication<UserRoute, User> {
             val response = it.get("/api/user/1")

@@ -7,6 +7,8 @@ object UserRepository {
 
     fun get(pk: Int) = users.firstOrNull { it.id == pk }
 
+    fun insert(user: User) = users.add(user)
+
     fun delete(pk: Int) = users.removeIf { it.id == pk }
 
     fun update(user: User) {

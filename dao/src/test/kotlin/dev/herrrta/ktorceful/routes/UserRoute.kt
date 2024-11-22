@@ -14,6 +14,12 @@ import kotlin.reflect.KClass
 class UserRoute: Base<User>() {
     override val klass: KClass<User> by lazy { User::class }
 
+    override suspend fun post(call: RoutingCall) {
+        val user = call.receive<User>()
+        UserRepository.insert(user)
+        call.respond(HttpStatusCode.OK)
+    }
+
     override suspend fun get(call: RoutingCall) {
         call.parameters["pk"] ?: return call.respond(UserRepository.users)
         super.get(call)
