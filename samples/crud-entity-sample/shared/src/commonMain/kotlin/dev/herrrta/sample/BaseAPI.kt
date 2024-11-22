@@ -19,7 +19,7 @@ class APIPrefix
 @Serializable
 abstract class BaseAPI<E : Any, PK : Any>(
     val parent: APIPrefix = APIPrefix()
-): Post, GetEntity<E>, UpdateEntity<E>, DeleteEntity<E> {
+): CreateEntity<E>, GetEntity<E>, UpdateEntity<E>, DeleteEntity<E> {
     abstract val repo: BaseRepository<E, PK>
 
     override suspend fun post(call: RoutingCall) {
