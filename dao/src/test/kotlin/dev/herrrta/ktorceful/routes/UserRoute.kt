@@ -49,5 +49,10 @@ class UserRoute: Base<User>() {
         call.respond(HttpStatusCode.OK)
     }
 
+    @Action(name = "DEACTIVATE_USERS")
+    private suspend fun sameAsDeactivate(call: RoutingCall, entities: List<User>) {
+        deactivate(call, entities)
+    }
+
     override suspend fun getInstance(pk: String): User? = UserRepository.get(pk.toInt())
 }

@@ -142,7 +142,27 @@ class KtorcefulDaoTest {
                 val user: User = client.get(EntityResource.Pk(UserRoute(), pk.toString())).body()
                 assertTrue { !user.active }
             }
+        }
+    }
 
+    @Test
+    fun `run action with different name`() {
+        ktorBasicRouteApplication<UserRoute, User> { client ->
+            val response = client.post(EntityResource.Action(UserRoute(), "DEACTIVATE_USERS")) {
+                contentType(ContentType.Application.Json)
+                setBody(listOf(
+                    User(1),
+                    User(2),
+                    User(3),
+                ))
+            }
+
+            assertEquals(HttpStatusCode.OK, response.status)
+
+            (1..3).forEach { pk ->
+                val user: User = client.get(EntityResource.Pk(UserRoute(), pk.toString())).body()
+                assertTrue { !user.active }
+            }
         }
     }
 

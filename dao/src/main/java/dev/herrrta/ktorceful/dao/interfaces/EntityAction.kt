@@ -25,7 +25,7 @@ interface EntityAction<E: Any>: EntityRoute<E> {
         call: RoutingCall
     ): Map<String, ActionFunctionType<E>> {
         return this::class.memberFunctions.fold(mutableMapOf()) { acc, kFunction ->
-            kFunction.findAnnotation<Action>() ?: return@fold acc
+            val action = kFunction.findAnnotation<Action>() ?: return@fold acc
 
             val params = kFunction.parameters
                 .filter { it.kind == KParameter.Kind.VALUE }
@@ -39,7 +39,7 @@ interface EntityAction<E: Any>: EntityRoute<E> {
                 "${this::class}.${kFunction.name} has the wrong parameters!"
             )
 
-            acc[kFunction.name] = kFunction as ActionFunctionType<E>
+            acc[action.name.ifBlank { kFunction.name }] = kFunction as ActionFunctionType<E>
             acc
         }
     }
