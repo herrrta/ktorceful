@@ -63,7 +63,7 @@
   <div class="breadcrumbs"><a href="../../index.html">dao</a><span class="delimiter">/</span><a href="../index.html">dev.herrrta.ktorceful.dao.interfaces</a><span class="delimiter">/</span><span class="current">DeleteEntity</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Delete</span><wbr><span><span>Entity</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dao:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">DeleteEntity</a><span class="token operator">&lt;</span><a href="index.html">E</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span> : <a href="../../../core/dev.herrrta.ktorceful.core.interfaces/-delete/index.html">Delete</a>, <a href="../-entity-route/index.html">EntityRoute</a><span class="token operator">&lt;</span><a href="index.html">E</a><span class="token operator">&gt; </span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dao:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">DeleteEntity</a><span class="token operator">&lt;</span><a href="index.html">E</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><a href="index.html">PK</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span> : <a href="../-entity-route/index.html">EntityRoute</a><span class="token operator">&lt;</span><a href="index.html">E</a><span class="token operator">&gt; </span></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
@@ -89,7 +89,22 @@
       </div>
       <div data-togglable="FUNCTION">
         <h2 class="">Functions</h2>
-        <div class="table"><a data-name="-278463542%2FFunctions%2F-151404088" anchor-label="hasDeletePermission" id="-278463542%2FFunctions%2F-151404088" data-filterable-set=":dao:dokkaHtmlPartial/main"></a>
+        <div class="table"><a data-name="-1637110959%2FFunctions%2F-151404088" anchor-label="delete" id="-1637110959%2FFunctions%2F-151404088" data-filterable-set=":dao:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":dao:dokkaHtmlPartial/main" data-filterable-set=":dao:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete.html"><span><span>delete</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1637110959%2FFunctions%2F-151404088"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dao:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete.html"><span class="token function">delete</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">call<span class="token operator">: </span><span data-unresolved-link="io.ktor.server.routing/RoutingCall///PointingToDeclaration/">RoutingCall</span><span class="token punctuation">, </span></span><span class="parameter ">pk<span class="token operator">: </span><a href="index.html">PK</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-278463542%2FFunctions%2F-151404088" anchor-label="hasDeletePermission" id="-278463542%2FFunctions%2F-151404088" data-filterable-set=":dao:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":dao:dokkaHtmlPartial/main" data-filterable-set=":dao:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
@@ -100,25 +115,6 @@
               <div>
                 <div class="title">
                   <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dao:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="has-delete-permission.html"><span class="token function">hasDeletePermission</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">call<span class="token operator">: </span><span data-unresolved-link="io.ktor.server.routing/RoutingCall///PointingToDeclaration/">RoutingCall</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-togglable="FUNCTION">
-        <h2 class="">Inherited functions</h2>
-        <div class="table"><a data-name="410029837%2FFunctions%2F-151404088" anchor-label="delete" id="410029837%2FFunctions%2F-151404088" data-filterable-set=":dao:dokkaHtmlPartial/main"></a>
-          <div class="table-row" data-filterable-current=":dao:dokkaHtmlPartial/main" data-filterable-set=":dao:dokkaHtmlPartial/main">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="index.html#410029837%2FFunctions%2F-151404088"><span><span>delete</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="410029837%2FFunctions%2F-151404088"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dao:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="index.html#410029837%2FFunctions%2F-151404088"><span class="token function">delete</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">call<span class="token operator">: </span><span data-unresolved-link="io.ktor.server.routing/RoutingCall///PointingToDeclaration/">RoutingCall</span></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
