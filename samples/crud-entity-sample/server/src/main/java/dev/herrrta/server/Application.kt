@@ -1,7 +1,8 @@
-package dev.herrrta.ktorceful
+package dev.herrrta.server
 
-import dev.herrrta.ktorceful.core.extensions.createBasicRoute
-import dev.herrrta.ktorceful.user.UserRoute
+import dev.herrrta.ktorceful.dao.createEntityRoute
+import dev.herrrta.sample.User
+import dev.herrrta.server.routes.UserAPI
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -23,5 +24,5 @@ fun Application.module() {
     install(Resources)
     install(ContentNegotiation) { json() }
 
-    createBasicRoute<UserRoute>()
+    createEntityRoute<UserAPI, User>()
 }

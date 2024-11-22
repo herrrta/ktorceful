@@ -14,6 +14,9 @@ application {
 
 dependencies {
     api(projects.core)
+    api(projects.dao)
+
+    implementation(projects.samples.crudEntitySample.shared)
 
     implementation(libs.logback)
     implementation(libs.ktor.server.core)

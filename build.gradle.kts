@@ -6,8 +6,13 @@ import org.jetbrains.dokka.gradle.AbstractDokkaTask
 plugins {
     alias(libs.plugins.gradle.maven.publish)
     alias(libs.plugins.kotlinJvm) apply false
-
     id("org.jetbrains.dokka") version "1.9.20"
+
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
 }
 
 val ktorcefulVersion: String by project
@@ -30,8 +35,9 @@ tasks.dokkaHtmlMultiModule {
 
 applyDokkaHomePageLink(project)
 
+
 subprojects
-    .filterNot { it.name.contains("sample") }
+    .filterNot { it.displayName.contains("sample") }
     .forEach { subproject ->
         subproject.apply(plugin = "org.jetbrains.dokka")
         subproject.apply(plugin = "com.vanniktech.maven.publish")
