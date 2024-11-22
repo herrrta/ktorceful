@@ -39,7 +39,7 @@ inline fun <reified Method : HTTPMethod> setBasicRoutes(): Route.() -> Unit = {
     }
 }
 
-inline fun <reified Method : HTTPMethod> Application.createBasicRoute() {
+inline fun <reified Method : HTTPMethod> Application.createRoutes() {
     routing {
         setBasicRoutes<Method>().invoke(this)
     }

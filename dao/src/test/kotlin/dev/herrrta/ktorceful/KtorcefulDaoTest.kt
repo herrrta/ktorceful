@@ -1,7 +1,7 @@
 package dev.herrrta.ktorceful
 
 import dev.herrrta.ktorceful.core.interfaces.HTTPMethod
-import dev.herrrta.ktorceful.dao.createEntityRoute
+import dev.herrrta.ktorceful.dao.createRoutes
 import dev.herrrta.ktorceful.dao.interfaces.EntityRoute
 import dev.herrrta.ktorceful.dao.resources.EntityResource
 import dev.herrrta.ktorceful.data.entity.User
@@ -198,7 +198,7 @@ private inline fun <reified EntityRouteClass, reified EntityClass : Any> ktorBas
         install(Resources)
         install(ContentNegotiation) { json() }
 
-        createEntityRoute<EntityRouteClass, EntityClass>()
+        createRoutes<EntityRouteClass, EntityClass>()
     }
 
     test.invoke(

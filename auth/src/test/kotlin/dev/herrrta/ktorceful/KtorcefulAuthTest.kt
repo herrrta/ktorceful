@@ -1,7 +1,7 @@
 package dev.herrrta.ktorceful
 
 import com.sun.security.auth.UserPrincipal
-import dev.herrrta.ktorceful.auth.createBasicRoute
+import dev.herrrta.ktorceful.auth.createRoutes
 import dev.herrrta.ktorceful.core.interfaces.HTTPMethod
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.auth.Auth
@@ -66,7 +66,7 @@ private inline fun <reified RouteClass: HTTPMethod> ktorAuthRouteApplication(
             basic("basic-auth") { validate(onValidate) }
         }
 
-        createBasicRoute<RouteClass>(
+        createRoutes<RouteClass>(
             configurations = arrayOf("basic-auth"),
             authOptional = authOptional
         )

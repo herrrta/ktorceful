@@ -30,7 +30,7 @@ class UserRoute: APIRoute<User>() {
 fun Application.module() {
     install(Resources)
 
-    createEntityRoute<UserRoute, User>() // (1)!
+    createRoutes<UserRoute, User>() // (1)!
 }
 ```
 
@@ -38,7 +38,7 @@ fun Application.module() {
 
 ## URL Pattern
 
-`createEntityRoute` creates the following URL patterns for your entity based on the interfaces implemented.
+`createRoutes` creates the following URL patterns for your entity based on the interfaces implemented.
 Any prefix url can be added by adding a parent to your route!
 
 <style>

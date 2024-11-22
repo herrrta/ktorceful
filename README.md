@@ -33,7 +33,7 @@ fun Application.module() {
     // ...
     
     // Create routing using the included functions
-    createBasicRoute<UserRoute>()
+    createRoutes<UserRoute>()
 }
 ```
 

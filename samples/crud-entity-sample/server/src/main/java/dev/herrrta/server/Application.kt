@@ -1,6 +1,6 @@
 package dev.herrrta.server
 
-import dev.herrrta.ktorceful.dao.createEntityRoute
+import dev.herrrta.ktorceful.dao.createRoutes
 import dev.herrrta.sample.User
 import dev.herrrta.server.routes.UserAPI
 import io.ktor.serialization.kotlinx.json.json
@@ -24,5 +24,5 @@ fun Application.module() {
     install(Resources)
     install(ContentNegotiation) { json() }
 
-    createEntityRoute<UserAPI, User>()
+    createRoutes<UserAPI, User>()
 }

@@ -6,7 +6,7 @@ import io.ktor.server.application.Application
 import io.ktor.server.auth.authenticate
 import io.ktor.server.routing.routing
 
-inline fun <reified Route : HTTPMethod> Application.createBasicRoute(
+inline fun <reified Route : HTTPMethod> Application.createRoutes(
     configurations: Array<String?> = arrayOf(null),
     authOptional: Boolean = false
 ) {

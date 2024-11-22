@@ -42,7 +42,7 @@ inline fun <reified ERoute : EntityRoute<*>, reified Entity : Any> setEntityRout
     }
 }
 
-inline fun <reified Route, reified Entity : Any> Application.createEntityRoute()
+inline fun <reified Route, reified Entity : Any> Application.createRoutes()
 where Route: EntityRoute<*>, Route : HTTPMethod {
     routing {
         setBasicRoutes<Route>().invoke(this)

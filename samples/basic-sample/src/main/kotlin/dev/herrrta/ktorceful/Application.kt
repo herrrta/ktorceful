@@ -1,6 +1,6 @@
 package dev.herrrta.ktorceful
 
-import dev.herrrta.ktorceful.core.extensions.createBasicRoute
+import dev.herrrta.ktorceful.core.extensions.createRoutes
 import dev.herrrta.ktorceful.user.UserRoute
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
@@ -23,5 +23,5 @@ fun Application.module() {
     install(Resources)
     install(ContentNegotiation) { json() }
 
-    createBasicRoute<UserRoute>()
+    createRoutes<UserRoute>()
 }

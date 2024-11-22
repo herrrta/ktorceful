@@ -25,7 +25,7 @@ class YourAPI: Get, Post {
 fun Application.module() {
     install(Resources)
 
-    createBasicRoute<YourAPI>() // (1)!
+    createRoutes<YourAPI>() // (1)!
 }
 ```
 

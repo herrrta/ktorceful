@@ -1,6 +1,6 @@
 package dev.herrrta.ktorceful
 
-import dev.herrrta.ktorceful.core.extensions.createBasicRoute
+import dev.herrrta.ktorceful.core.extensions.createRoutes
 import dev.herrrta.ktorceful.core.interfaces.HTTPMethod
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -37,7 +37,7 @@ private inline fun <reified RouteClass: HTTPMethod> ktorBasicRouteApplication(
 ) = testApplication {
     application {
         install(Resources)
-        createBasicRoute<RouteClass>()
+        createRoutes<RouteClass>()
     }
 
     test.invoke(client)
