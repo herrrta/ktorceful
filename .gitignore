@@ -24,6 +24,7 @@ hs_err_pid*
 replay_pid*
 
 local.properties
+/.kotlin/
 /.gradle/
 /.venv/
 /.idea/
@@ -31,9 +32,12 @@ local.properties
 
 /auth/build/
 /core/build/
-/sample/build/
+/samples/**/build/
+/samples/**/.gradle/
 /build/
 /dao/build/
+
+
 
 # dokka
 /docs/api/
