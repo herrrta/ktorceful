@@ -778,14 +778,14 @@
 <div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">Application</span><span class="p">.</span><span class="nf">module</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">install</span><span class="p">(</span><span class="n">Resources</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">createEntityRoute</span><span class="o">&lt;</span><span class="n">UserRoute</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="c1">// (1)!</span>
+<span class="w">    </span><span class="n">createRoutes</span><span class="o">&lt;</span><span class="n">UserRoute</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="c1">// (1)!</span>
 <span class="p">}</span>
 </code></pre></div>
 <ol>
 <li>Also handles some basic functionality with serialization using kotlinx</li>
 </ol>
 <h2 id="url-pattern">URL Pattern</h2>
-<p><code>createEntityRoute</code> creates the following URL patterns for your entity based on the interfaces implemented.
+<p><code>createRoutes</code> creates the following URL patterns for your entity based on the interfaces implemented.
 Any prefix url can be added by adding a parent to your route!</p>
 <style>
 .tg  {
