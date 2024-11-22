@@ -16,7 +16,7 @@ class APIPrefix
 @Serializable
 abstract class BaseAPI<E : Any, PK : Any>(
     val parent: APIPrefix = APIPrefix()
-): CreateEntity<E>, GetEntity<E>, UpdateEntity<E>, DeleteEntity<E> {
+): CreateEntity<E>, GetEntity<E, PK>, UpdateEntity<E, PK>, DeleteEntity<E, PK> {
     abstract val repo: BaseRepository<E, PK>
 
     override suspend fun post(call: RoutingCall) {
@@ -25,17 +25,14 @@ abstract class BaseAPI<E : Any, PK : Any>(
     }
 
     override suspend fun get(call: RoutingCall) {
-        if ("pk" !in call.parameters) {
-            return call.respond(repo.all(), TypeInfo(List::class))
-        }
-        super.get(call)
+        call.respond(repo.all(), TypeInfo(List::class))
     }
 
-    override suspend fun getInstance(pk: String): E? {
-        return (pk as? PK)?.let { repo.get(it) }
+    override suspend fun getInstance(pk: PK): E? {
+        return repo.get(pk)
     }
 
-    override suspend fun put(call: RoutingCall) {
+    override suspend fun put(call: RoutingCall, pk: PK) {
         val entity: E = call.receive(klass)
         repo.update(entity)
     }

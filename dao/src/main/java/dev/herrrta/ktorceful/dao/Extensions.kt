@@ -19,20 +19,20 @@ import io.ktor.server.routing.routing
 import kotlin.reflect.full.isSubclassOf
 
 @Suppress("UNCHECKED_CAST")
-inline fun <reified ERoute : EntityRoute<*>, reified Entity : Any> setEntityRoutes(): Route.() -> Unit = {
+inline fun <reified ERoute : EntityRoute<*>, reified Entity : Any, reified PK : Any> setEntityRoutes(): Route.() -> Unit = {
     if (ERoute::class.isSubclassOf(GetEntity::class)) {
-        get<EntityResource.Pk<ERoute>> {
-            (it.parent as GetEntity<Entity>).get(call)
+        get<EntityResource.Pk<ERoute, PK>> {
+            (it.parent as GetEntity<Entity, PK>).get(call, it.pk)
         }
     }
     if (ERoute::class.isSubclassOf(UpdateEntity::class)) {
-        put<EntityResource.Pk<ERoute>> {
-            (it.parent as UpdateEntity<Entity>).put(call)
+        put<EntityResource.Pk<ERoute, PK>> {
+            (it.parent as UpdateEntity<Entity, PK>).put(call, it.pk)
         }
     }
     if (ERoute::class.isSubclassOf(DeleteEntity::class)) {
-        delete<EntityResource.Pk<ERoute>> {
-            (it.parent as DeleteEntity<Entity>).delete(call)
+        delete<EntityResource.Pk<ERoute, PK>> {
+            (it.parent as DeleteEntity<Entity, PK>).delete(call, it.pk)
         }
     }
     if (ERoute::class.isSubclassOf(EntityAction::class)) {
@@ -42,10 +42,10 @@ inline fun <reified ERoute : EntityRoute<*>, reified Entity : Any> setEntityRout
     }
 }
 
-inline fun <reified Route, reified Entity : Any> Application.createRoutes()
+inline fun <reified Route, reified Entity : Any, reified PK : Any> Application.createRoutes()
 where Route: EntityRoute<*>, Route : HTTPMethod {
     routing {
         setBasicRoutes<Route>().invoke(this)
-        setEntityRoutes<Route, Entity>().invoke(this)
+        setEntityRoutes<Route, Entity, PK>().invoke(this)
     }
 }

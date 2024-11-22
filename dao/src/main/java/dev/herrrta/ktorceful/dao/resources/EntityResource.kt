@@ -7,5 +7,5 @@ class EntityResource {
     class Action<T>(val parent: T, val name: String)
 
     @Resource("{pk}")
-    class Pk<T>(val parent: T, val pk: String)
+    class Pk<T, PK>(val parent: T, val pk: PK)
 }

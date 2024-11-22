@@ -43,7 +43,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `post new entity instance`() {
-        ktorBasicRouteApplication<UserRoute, User> {
+        ktorBasicRouteApplication<UserRoute, User, Int> {
             val response = it.post(UserRoute()) {
                 contentType(ContentType.Application.Json)
                 setBody(User(10, "NEW"))
@@ -57,7 +57,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `get single entity instance`() {
-        ktorBasicRouteApplication<UserRoute, User> {
+        ktorBasicRouteApplication<UserRoute, User, Int> {
             val response = it.get("/api/user/1")
             val user: User = response.body()
 
@@ -67,7 +67,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `get all entity instances`() {
-        ktorBasicRouteApplication<UserRoute, User> {
+        ktorBasicRouteApplication<UserRoute, User, Int> {
             val response = it.get(UserRoute())
             val users: List<User> = response.body()
 
@@ -79,7 +79,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `delete single entity instance`() {
-        ktorBasicRouteApplication<UserRoute, User> {
+        ktorBasicRouteApplication<UserRoute, User, Int> {
             val pk = 2
 
             // Get entity
@@ -100,7 +100,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `update single entity instance`() {
-        ktorBasicRouteApplication<UserRoute, User> {
+        ktorBasicRouteApplication<UserRoute, User, Int> {
             val pk = 3
 
             // Get entity
@@ -126,7 +126,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `run action against entity instances`() {
-        ktorBasicRouteApplication<UserRoute, User> { client ->
+        ktorBasicRouteApplication<UserRoute, User, Int> { client ->
             val response = client.post(EntityResource.Action(UserRoute(), "deactivate")) {
                 contentType(ContentType.Application.Json)
                 setBody(listOf(
@@ -147,7 +147,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `run action with different name`() {
-        ktorBasicRouteApplication<UserRoute, User> { client ->
+        ktorBasicRouteApplication<UserRoute, User, Int> { client ->
             val response = client.post(EntityResource.Action(UserRoute(), "DEACTIVATE_USERS")) {
                 contentType(ContentType.Application.Json)
                 setBody(listOf(
@@ -168,7 +168,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `run action using empty list`() {
-        ktorBasicRouteApplication<UserRoute, User> {
+        ktorBasicRouteApplication<UserRoute, User, Int> {
             val response = it.post(EntityResource.Action(UserRoute(), "deactivate")) {
                 contentType(ContentType.Application.Json)
                 setBody(emptyList<User>())
@@ -180,7 +180,7 @@ class KtorcefulDaoTest {
 
     @Test
     fun `run nonexistent action`() {
-        ktorBasicRouteApplication<UserRoute, User> {
+        ktorBasicRouteApplication<UserRoute, User, Int> {
             assertFailsWith<NotImplementedError> {
                 it.post(EntityResource.Action(UserRoute(), "nonexistent")) {
                     contentType(ContentType.Application.Json)
@@ -191,14 +191,14 @@ class KtorcefulDaoTest {
     }
 }
 
-private inline fun <reified EntityRouteClass, reified EntityClass : Any> ktorBasicRouteApplication(
+private inline fun <reified EntityRouteClass, reified EntityClass : Any, reified PK : Any> ktorBasicRouteApplication(
     crossinline test: suspend (client: HttpClient) -> Unit
 ) where EntityRouteClass : EntityRoute<*>, EntityRouteClass : HTTPMethod = testApplication {
     application {
         install(Resources)
         install(ContentNegotiation) { json() }
 
-        createRoutes<EntityRouteClass, EntityClass>()
+        createRoutes<EntityRouteClass, EntityClass, PK>()
     }
 
     test.invoke(

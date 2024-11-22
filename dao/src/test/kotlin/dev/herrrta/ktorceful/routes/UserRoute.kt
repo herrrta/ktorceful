@@ -11,7 +11,7 @@ import io.ktor.server.routing.RoutingCall
 import kotlin.reflect.KClass
 
 @Resource("user")
-class UserRoute: Base<User>() {
+class UserRoute: Base<User, Int>() {
     override val klass: KClass<User> by lazy { User::class }
 
     override suspend fun post(call: RoutingCall) {
@@ -21,23 +21,23 @@ class UserRoute: Base<User>() {
     }
 
     override suspend fun get(call: RoutingCall) {
-        call.parameters["pk"] ?: return call.respond(UserRepository.users)
-        super.get(call)
+        call.respond(UserRepository.users)
     }
 
-    override suspend fun put(call: RoutingCall) {
+    override suspend fun put(call: RoutingCall, pk: Int) {
         val user = call.receive<User>()
-        UserRepository.update(user)
+        UserRepository.update(user.copy(id = pk))
 
         call.respond(HttpStatusCode.OK)
     }
 
-    override suspend fun delete(call: RoutingCall) {
-        call.parameters["pk"]?.toInt()
-            ?.let { UserRepository.delete(it) }
-            ?: return call.respond(HttpStatusCode.BadRequest, "Entity not found!")
+    override suspend fun delete(call: RoutingCall, pk: Int) {
+        val deleted = UserRepository.delete(pk)
+        if (deleted)
+            return call.respond(HttpStatusCode.OK)
 
-        call.respond(HttpStatusCode.OK)
+        call.respond(HttpStatusCode.BadRequest, "Entity not found!")
+
     }
 
     @Action
@@ -54,5 +54,5 @@ class UserRoute: Base<User>() {
         deactivate(call, entities)
     }
 
-    override suspend fun getInstance(pk: String): User? = UserRepository.get(pk.toInt())
+    override suspend fun getInstance(pk: Int): User? = UserRepository.get(pk)
 }

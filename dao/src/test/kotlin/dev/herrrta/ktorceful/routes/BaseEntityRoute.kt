@@ -12,6 +12,6 @@ import kotlinx.serialization.Serializable
 class API
 
 @Serializable
-abstract class Base<E: Any> (
+abstract class Base<E: Any, PK : Any> (
     val parent: API = API()
-): CreateEntity<E>, GetEntity<E>, UpdateEntity<E>, DeleteEntity<E>, EntityAction<E>
+): CreateEntity<E>, GetEntity<E, PK>, UpdateEntity<E, PK>, DeleteEntity<E, PK>, EntityAction<E>

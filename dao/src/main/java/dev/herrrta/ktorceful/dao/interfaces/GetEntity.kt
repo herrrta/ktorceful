@@ -7,10 +7,9 @@ import io.ktor.server.routing.RoutingCall
 import io.ktor.util.reflect.TypeInfo
 import kotlin.reflect.full.starProjectedType
 
-interface GetEntity<E : Any> : Get, EntityRoute<E> {
-    override suspend fun get(call: RoutingCall) {
-        val pk = call.parameters["pk"]
-        val entity = pk?.let { getInstance(it) } ?: return call.respond(HttpStatusCode.BadRequest)
+interface GetEntity<E : Any, PK: Any> : Get, EntityRoute<E> {
+    suspend fun get(call: RoutingCall, pk: PK) {
+        val entity = getInstance(pk) ?: return call.respond(HttpStatusCode.BadRequest)
 
         call.respond(
             entity,
@@ -18,5 +17,5 @@ interface GetEntity<E : Any> : Get, EntityRoute<E> {
         )
     }
 
-    suspend fun getInstance(pk: String): E?
+    suspend fun getInstance(pk: PK): E?
 }

@@ -24,5 +24,5 @@ fun Application.module() {
     install(Resources)
     install(ContentNegotiation) { json() }
 
-    createRoutes<UserAPI, User>()
+    createRoutes<UserAPI, User, Long>()
 }
