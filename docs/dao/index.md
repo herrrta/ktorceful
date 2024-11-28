@@ -1,7 +1,7 @@
 # Overview
 To create a basic rest api you can implement any of the entity interfaces required for your api
 
-Use the [available interfaces](../api/dao/dev.herrrta.ktorceful.dao.interfaces/index.html) to create a CRUD api for your entity
+Use the [available interfaces](../api/ktorceful-dao/dev.herrrta.ktorceful.dao.interfaces/index.html) to create a CRUD api for your entity
 
 
 ## Example classes

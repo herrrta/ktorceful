@@ -5,10 +5,10 @@ Add ktorceful-core dependency to your application
 
     ```kotlin title="build.gradle.kts"
     dependencies {
-        implementation("dev.herrrta.ktorceful:core:x.x.x")
+        implementation("dev.herrrta.ktorceful:ktorceful-core:x.x.x")
         
         // OPTIONAL! if using authentication in ktor
-        implementation("dev.herrrta.ktorceful:auth:x.x.x")
+        implementation("dev.herrrta.ktorceful:ktorceful-auth:x.x.x")
     }
     ```
 
@@ -20,10 +20,10 @@ Add ktorceful-core dependency to your application
     ...
     
     [libraries]
-    ktorceful-core = { module = "dev.herrrta.ktorceful:core", version.ref = "ktorceful" }
+    ktorceful-core = { module = "dev.herrrta.ktorceful:ktorceful-core", version.ref = "ktorceful" }
     
     # OPTIONAL! if using authentication in ktor
-    ktorceful-auth = { module = "dev.herrrta.ktorceful:auth" }
+    ktorceful-auth = { module = "dev.herrrta.ktorceful:ktorceful-auth" }
     ...
     ```
     

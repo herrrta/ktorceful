@@ -14,13 +14,13 @@ kotlin {
 }
 
 dependencies {
-    implementation(projects.core)
-    implementation(projects.dao)
-    implementation(projects.ktorcefulAnnotation)
+    api(projects.ktorcefulCore)
+    api(projects.ktorcefulDao)
+    api(projects.ktorcefulAnnotation)
     implementation(libs.ksp.symbol.processing.api)
     implementation(libs.ktor.server.core)
 
-    testImplementation(projects.dao)
+    testImplementation(projects.ktorcefulDao)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.ksp.symbol.processing)
     testImplementation(libs.ksp.test)

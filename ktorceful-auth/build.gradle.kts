@@ -16,17 +16,13 @@ kotlin {
 }
 
 dependencies {
-    api(projects.core)
-    api(projects.auth)
+    api(projects.ktorcefulCore)
 
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.auth)
-    implementation(libs.ktor.server.resources)
 
     testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.ktor.server.resources)
     testImplementation(libs.ktor.server.test.host)
-    testImplementation(libs.ktor.server.content.negotiation)
-    testImplementation(libs.ktor.server.serialization.kotlinx.json)
-    testImplementation(libs.ktor.client.content.negotiation)
-    testImplementation(libs.ktor.client.resources)
+    testImplementation(libs.ktor.client.auth)
 }
