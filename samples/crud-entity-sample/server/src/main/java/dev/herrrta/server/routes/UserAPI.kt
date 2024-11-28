@@ -11,7 +11,6 @@ import kotlin.reflect.KClass
 @Resource("user")
 class UserAPI: BaseAPI<User, Long>() {
     override val repo: BaseRepository<User, Long> get() = UserRepository
-    override val klass: KClass<User> by lazy { User::class }
 
     override suspend fun delete(call: RoutingCall, pk: Long) {
         repo.delete(pk)

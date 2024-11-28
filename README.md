@@ -12,6 +12,7 @@ See the [project website](https://herrrta.github.io/ktorceful/) for documentatio
 
 ```kotlin
 // Create your class based view to handle all your required HTTP methods
+@Ktorceful
 @Resource("user")
 class UserRoute: Get, Post, Delete {
     override suspend fun get(call: RoutingCall) {
@@ -31,9 +32,8 @@ class UserRoute: Get, Post, Delete {
 fun Application.module() {
     install(Resources)
     // ...
-    
-    // Create routing using the included functions
-    createRoutes<UserRoute>()
+
+    allKtorcefulRoutes() // You can call this once for all routes!
 }
 ```
 
