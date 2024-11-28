@@ -30,13 +30,9 @@ local.properties
 /.idea/
 /out/
 
-/auth/build/
-/core/build/
+**/build/
 /samples/**/build/
 /samples/**/.gradle/
-/build/
-/dao/build/
-
 
 
 # dokka

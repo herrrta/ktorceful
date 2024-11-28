@@ -58,7 +58,8 @@ class KtorcefulDaoTest {
     @Test
     fun `get single entity instance`() {
         ktorBasicRouteApplication<UserRoute, User, Int> {
-            val response = it.get("/api/user/1")
+            val pk = 1
+            val response = it.get(EntityResource.Pk(UserRoute(), pk.toString()))
             val user: User = response.body()
 
             assertEquals(1, user.id)
@@ -193,7 +194,7 @@ class KtorcefulDaoTest {
 
 private inline fun <reified EntityRouteClass, reified EntityClass : Any, reified PK : Any> ktorBasicRouteApplication(
     crossinline test: suspend (client: HttpClient) -> Unit
-) where EntityRouteClass : EntityRoute<*>, EntityRouteClass : HTTPMethod = testApplication {
+) where EntityRouteClass : EntityRoute, EntityRouteClass : HTTPMethod = testApplication {
     application {
         install(Resources)
         install(ContentNegotiation) { json() }

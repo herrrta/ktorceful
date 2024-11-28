@@ -12,10 +12,9 @@ import kotlin.reflect.KClass
 
 @Resource("user")
 class UserRoute: Base<User, Int>() {
-    override val klass: KClass<User> by lazy { User::class }
 
-    override suspend fun post(call: RoutingCall) {
-        val user = call.receive<User>()
+    override suspend fun post(call: RoutingCall, klass: KClass<User>) {
+        val user = call.receive(klass)
         UserRepository.insert(user)
         call.respond(HttpStatusCode.OK)
     }
@@ -24,8 +23,8 @@ class UserRoute: Base<User, Int>() {
         call.respond(UserRepository.users)
     }
 
-    override suspend fun put(call: RoutingCall, pk: Int) {
-        val user = call.receive<User>()
+    override suspend fun put(call: RoutingCall, pk: Int, klass: KClass<User>) {
+        val user = call.receive(klass)
         UserRepository.update(user.copy(id = pk))
 
         call.respond(HttpStatusCode.OK)

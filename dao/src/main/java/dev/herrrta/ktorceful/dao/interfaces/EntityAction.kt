@@ -20,7 +20,7 @@ private val PARAMS = listOf(
 internal typealias ActionFunctionType<E> = KSuspendFunction2<RoutingCall, List<E>, Unit>
 
 @Suppress("UNCHECKED_CAST")
-interface EntityAction<E: Any>: EntityRoute<E> {
+interface EntityAction<E: Any>: EntityRoute {
     suspend fun getActions(
         call: RoutingCall
     ): Map<String, ActionFunctionType<E>> {

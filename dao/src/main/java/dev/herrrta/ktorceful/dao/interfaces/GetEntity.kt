@@ -5,10 +5,11 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.response.respond
 import io.ktor.server.routing.RoutingCall
 import io.ktor.util.reflect.TypeInfo
+import kotlin.reflect.KClass
 import kotlin.reflect.full.starProjectedType
 
-interface GetEntity<E : Any, PK: Any> : Get, EntityRoute<E> {
-    suspend fun get(call: RoutingCall, pk: PK) {
+interface GetEntity<E : Any, PK: Any> : Get, EntityRoute {
+    suspend fun get(call: RoutingCall, pk: PK, klass: KClass<E>) {
         val entity = getInstance(pk) ?: return call.respond(HttpStatusCode.BadRequest)
 
         call.respond(
