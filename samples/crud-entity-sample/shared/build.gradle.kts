@@ -21,7 +21,7 @@ kotlin {
 //    wasmJs()
     sourceSets {
         commonMain.dependencies {
-            api(projects.dao)
+            api(projects.ktorcefulDao)
             implementation(libs.ktor.server.resources)
             implementation(libs.ktor.server.serialization.kotlinx.json)
             implementation(libs.ktor.client.core)

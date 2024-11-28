@@ -23,10 +23,10 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":core",
+    ":ktorceful-core",
     ":ktorceful-annotation",
-    ":auth",
-    ":dao",
+    ":ktorceful-auth",
+    ":ktorceful-dao",
     ":ktorceful-processor",
     ":samples:basic-sample",
     ":samples:crud-entity-sample:composeApp",
