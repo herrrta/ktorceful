@@ -21,6 +21,8 @@ class YourAPI: Get, Post {
 ```
 
 ## Define route
+All annotated classes will have their routing generated automatically.
+You can call them all once using the `allKtorcefulRoutes()` extension.
 
 ```kotlin
 fun Application.module() {
@@ -34,4 +36,3 @@ fun Application.module() {
 }
 ```
 
-1.  Automatically handles defining your route

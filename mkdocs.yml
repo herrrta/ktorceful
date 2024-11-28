@@ -60,5 +60,6 @@ nav:
   - 'Auth':
       - 'Overview': auth/index.md
       - 'Kotlin API': api/auth/index.html
+  - 'Annotations': annotation/index.md
   - 'Samples': samples.md
   - 'Kotlin API': api/index.html
