@@ -1,1 +1,1 @@
-sourceset_dependencies = '{":core:dokkaHtmlPartial/main":[],":dao:dokkaHtmlPartial/main":[],":auth:dokkaHtmlPartial/main":[]}'
+sourceset_dependencies = '{":ktorceful-annotation:dokkaHtmlPartial/main":[],":ktorceful-core:dokkaHtmlPartial/main":[],":ktorceful-processor:dokkaHtmlPartial/main":[],":ktorceful-dao:dokkaHtmlPartial/main":[],":ktorceful-auth:dokkaHtmlPartial/main":[]}'

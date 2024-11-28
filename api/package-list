@@ -1,13 +1,17 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 
-module:auth
+module:ktorceful-annotation
+dev.herrrta.ktorceful.annotation
+module:ktorceful-auth
 dev.herrrta.ktorceful.auth
-module:core
+module:ktorceful-core
 dev.herrrta.ktorceful.core.extensions
 dev.herrrta.ktorceful.core.interfaces
-module:dao
+module:ktorceful-dao
 dev.herrrta.ktorceful.dao
 dev.herrrta.ktorceful.dao.annotations
 dev.herrrta.ktorceful.dao.interfaces
 dev.herrrta.ktorceful.dao.resources
+module:ktorceful-processor
+dev.herrrta.ktorceful.processor
