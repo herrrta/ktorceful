@@ -2,7 +2,7 @@
 
 To create a basic rest api you can implement any HTTP Method interfaces required for your api
 
-All ktor restful methods are [available as interfaces](../api/core/dev.herrrta.ktorceful.core.interfaces/index.html).
+All ktor restful methods are [available as interfaces](../api/ktorceful-core/dev.herrrta.ktorceful.core.interfaces/index.html).
 
 ## Example class
 

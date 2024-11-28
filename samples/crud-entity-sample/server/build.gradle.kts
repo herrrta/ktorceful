@@ -13,8 +13,8 @@ application {
 }
 
 dependencies {
-    api(projects.core)
-    api(projects.dao)
+    api(projects.ktorcefulCore)
+    api(projects.ktorcefulDao)
 
     implementation(projects.samples.crudEntitySample.shared)
 
