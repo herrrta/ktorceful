@@ -30,7 +30,7 @@ class UserRoute: Base<User, Int>() {
         call.respond(HttpStatusCode.OK)
     }
 
-    override suspend fun delete(call: RoutingCall, pk: Int) {
+    override suspend fun delete(call: RoutingCall, pk: Int, klass: KClass<User>) {
         val deleted = UserRepository.delete(pk)
         if (deleted)
             return call.respond(HttpStatusCode.OK)

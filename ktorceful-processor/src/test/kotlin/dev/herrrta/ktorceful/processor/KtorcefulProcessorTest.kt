@@ -98,11 +98,13 @@ class KtorcefulProcessorTest {
 
             @Ktorceful
             @Resource("test")
-            class TestClass: CreateEntity<Test>, GetEntity<Test, Int> {
+            class TestClass: CreateEntity<Test>, GetEntity<Test, Int>, DeleteEntity<Test, Int>, UpdateEntity<Test, Int> {
                 override suspend fun get(call: RoutingCall) = Unit
                 override suspend fun get(call: RoutingCall, pk: Int, klass: KClass<Test>) = Unit
                 override suspend fun post(call: RoutingCall, klass: KClass<Test>) = Unit
                 override suspend fun getInstance(pk: Int): Test? = null
+                override suspend fun put(call: RoutingCall, pk: Int, klass: KClass<Test>) = Unit
+                override suspend fun delete(call: RoutingCall, pk: Int, klass: KClass<Test>) = Unit
             }
             """,
             KtorcefulProcessorProvider()

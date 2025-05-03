@@ -12,7 +12,7 @@ import kotlin.reflect.KClass
 class UserAPI: BaseAPI<User, Long>() {
     override val repo: BaseRepository<User, Long> get() = UserRepository
 
-    override suspend fun delete(call: RoutingCall, pk: Long) {
+    override suspend fun delete(call: RoutingCall, pk: Long, klass: KClass<User>) {
         repo.delete(pk)
     }
 }

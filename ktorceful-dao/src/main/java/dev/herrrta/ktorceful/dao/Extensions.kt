@@ -38,7 +38,7 @@ inline fun <reified ERoute : EntityRoute, reified Entity : Any, reified PK : Any
     }
     if (ERoute::class.isSubclassOf(DeleteEntity::class)) {
         delete<EntityResource.Pk<ERoute, PK>> {
-            (it.parent as DeleteEntity<Entity, PK>).delete(call, it.pk)
+            (it.parent as DeleteEntity<Entity, PK>).delete(call, it.pk, Entity::class)
         }
     }
     if (ERoute::class.isSubclassOf(EntityAction::class)) {
